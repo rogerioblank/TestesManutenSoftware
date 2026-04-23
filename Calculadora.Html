@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+
+  <style>
+    #historico {
+      height: 20px;
+      color: gray;
+      font-size: 14px;
+    }
+    #display {
+      font-size: 20px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="historico"></div>
+<input id="display" type="text" placeholder="0">
+
+<br>
+
+<!-- Teclado HTML -->
+ <button onclick="limpar()">C</button>
+ <br>
+
+<button onclick="inserirNumero('7')">7</button>
+<button onclick="inserirNumero('8')">8</button>
+<button onclick="inserirNumero('9')">9</button>
+<button onclick="inserirOperador('/')">/</button>
+<br>
+
+<button onclick="inserirNumero('4')">4</button>
+<button onclick="inserirNumero('5')">5</button>
+<button onclick="inserirNumero('6')">6</button>
+<button onclick="inserirOperador('*')">*</button>
+<br>
+
+<button onclick="inserirNumero('1')">1</button>
+<button onclick="inserirNumero('2')">2</button>
+<button onclick="inserirNumero('3')">3</button>
+<button onclick="inserirOperador('+')">+</button>
+
+<br>
+<button onclick="inserirNumero('0')">0</button>
+<button onclick="">.</button>
+<button onclick="calcular()">=</button>
+<button onclick="inserirOperador('-')">-</button>
+
+<script>
+  let valorAnterior = null;
+  let operadorAtual = null;
+
+  const display = document.getElementById("display");
+  const historico = document.getElementById("historico");
+
+  // ======== FUNÇÕES DOS BOTÕES ========
+
+  function inserirNumero(num) {
+    display.value += num;
+  }
+
+  function inserirOperador(op) {
+    // Permite número negativo
+    if (op === "-" && display.value === "" && valorAnterior === null) {
+      display.value = "-";
+      return;
+    }
+
+    if (display.value === "") return;
+
+    if (valorAnterior !== null) {
+      calcular();
+    }
+
+    valorAnterior = parseFloat(display.value);
+    operadorAtual = op;
+
+    historico.innerText = `${valorAnterior} ${operadorAtual}`;
+    display.value = "";
+  }
+
+  function calcular() {
+    if (valorAnterior === null || operadorAtual === null || display.value === "") {
+      return;
+    }
+
+    const valorAtual = parseFloat(display.value);
+    let resultado;
+
+    switch (operadorAtual) {
+      case "+": resultado = valorAnterior + valorAtual; break;
+      case "-": resultado = valorAnterior - valorAtual; break;
+      case "*": resultado = valorAnterior * valorAtual; break;
+      case "/": resultado = valorAtual !== 0 ? valorAnterior / valorAtual : "Erro"; break;
+    }
+
+    historico.innerText = `${valorAnterior} ${operadorAtual} ${valorAtual} =`;
+    display.value = resultado;
+
+    valorAnterior = null;
+    operadorAtual = null;
+  }
+
+  function limpar() {
+    display.value = "";
+    historico.innerText = "";
+    valorAnterior = null;
+    operadorAtual = null;
+  }
+
+  // ======== TECLADO ========
+  
+document.addEventListener("keydown", (e) => {
+  const operadores = ["+", "-", "*", "/"];
+
+  // Números
+  if (!isNaN(e.key)) {
+    e.preventDefault();            // ⛔ impede duplicação
+    inserirNumero(e.key);
+  }
+
+  // Operadores
+  if (operadores.includes(e.key)) {
+    e.preventDefault();            // ⛔ impede duplicação
+    inserirOperador(e.key);
+  }
+
+  if (e.key === "=" || e.key === "Enter") {
+    e.preventDefault();
+    calcular();
+  }
+
+  if (e.key === "Escape") {
+    limpar();
+  }
+});
+
+</script>
+
+</body>
+</html>

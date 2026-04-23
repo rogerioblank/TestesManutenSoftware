@@ -1,0 +1,40 @@
+1. Objetivo
+Testar calculadora parecida com uma calculadora real. A utilização da IA foi importante para acelerar o desenvolvimento e aplicar funcionalidades parecidas com a vida real. Inicialmente vamos testar as operações e se elas retornam os resultados corretamente
+
+2. Metodologia de Teste
+Aplicado a metodologia de Teste Caixa Preta.
+
+3. Escopo e Testes
+ 3.1 - Testar funcionalidades (Soma, Subtração, Multiplicação e Divisão)
+
+ 3.2 - Testar Digitação pelos botões do html (numérico e operadores)
+ 3.3 - Testar funcionalidades (Soma, Subtração, Multiplicação e Divisão)
+ 3.4 - Testar cálculos com números negativos
+ 3.7 - Não será testado cálculos utilizando casas decimais, pois essa função ainda não foi implementada
+
+4. Tipo de Testes Aplicado
+ 4.1 - Testar se a calculadora aceita letras, e outros caracteres
+ 4.2 - Testar se a calculadora exibe corretamente os resultados
+
+5. Forma de Execução
+ 5.1 - Utilizar o teclado para informar números e operadores
+ 5.2 - Utilizar botões do html para informar números e operadores
+
+6. Ambiente de Testes
+ 6.1 - Utilizar o Navegadores
+
+7. Papeis e Responsáveis
+ 7.1 - Dev - Testar funcionalidades desenvolvidas
+
+8. Riscos e Contingencias
+ 8.1 - Ter um computador conectado a energia elétrica conectado a nobreak para rodar os testes
+ 8.2 - programa não utiliza internet roda offline, não é necessário ter internet
+
+9. Ferramentas de Teste
+ 9.1 - Google Chrome, Edge
+
+10 Métricas de Qualidade
+ 10.1 - contabilizar o numero de testes com sucesso
+ 10.2 - Contabilizar o numero de testes que falharam
+ 10.3 - Alcançar no mínimo 98% de sucesso em relação ao total de testes executados!
+
